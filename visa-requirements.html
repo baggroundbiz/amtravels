@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Requirements - A.M Travels Bangalore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #003366; /* Deep Corporate Blue */
+            --gold: #003366;    /* Replaced gold with brand blue per original design */
+            --text: #333;
+            --light: #f9f9f9;
+            --transition: all 0.3s ease;
+       }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation - EXACT MATCH */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none; /* Added for link */
+        }
+
+        .brand img {
+            height: 34px;
+            width: auto;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .brand:hover img {
+            transform: translateY(-3px) rotate(-3deg) scale(1.05);
+            filter: drop-shadow(0 6px 12px rgba(0,51,102,0.35));
+        }
+
+        .brand-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
+            transition: letter-spacing 0.4s ease;
+        }
+
+        .brand:hover .brand-text {
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li { margin-left: 30px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Blog Content Styles */
+        .blog-header {
+            background: var(--light);
+            padding: 60px 8%;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .blog-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .blog-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 35px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blog-content h3 i {
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .doc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doc-item {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .doc-item:hover {
+            transform: translateX(5px);
+        }
+
+        .doc-item strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        /* Footer - EXACT MATCH */
+        footer {
+            background: var(--primary);
+            color: #fff;
+            padding: 60px 8% 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: #fff; /* Adjusted from gold for readability on blue */
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .footer-link {
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-link:hover { opacity: 0.8; }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; }
+            .nav-links { display: none; }
+            .section-title { font-size: 2rem; }
+            .blog-container { padding: 40px 6%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="brand">
+            <img src="https://i.ibb.co/SwTRXz9v/bg-0782a1cf-806e-49b3-8e47-d239297beb8c.png" alt="A.M Travels Logo">
+            <span class="brand-text">A.M TRAVELS</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="blog-header">
+        <h1 class="section-title">Common Documents Required to Apply for a Visa</h1>
+        <p>A comprehensive guide to preparing your travel documentation for a smooth approval process.</p>
+    </div>
+
+    <div class="blog-container">
+        <div class="blog-content">
+            <p>Applying for a visa can often feel like the most complex part of your travel planning. At A.M. Travels, we believe in making this process as transparent as possible. While specific requirements vary by country, here are the fundamental documents almost every consulate will request:</p>
+
+            <div class="doc-list">
+                <div class="doc-item">
+                    <strong>1. Passport</strong>
+                    Your passport is the most critical document. It must be valid for a specific period (typically at least six months beyond your intended stay) and must contain at least two blank pages for visa stamps.
+                </div>
+
+                <div class="doc-item">
+                    <strong>2. Application Form</strong>
+                    A completed and signed visa application form. Depending on the destination, this must be submitted online through official portals or physically at a Visa Application Centre.
+                </div>
+
+                <div class="doc-item">
+                    <strong>3. Photographs</strong>
+                    Recent passport-sized photos are mandatory. These must meet the destination country's strict specifications regarding background color, facial expression, and dimensions.
+                </div>
+
+                <div class="doc-item">
+                    <strong>4. Proof of Financial Support</strong>
+                    Consulates need assurance that you can sustain yourself. This typically includes recent bank statements (usually 3-6 months), pay slips, or Income Tax Returns (ITR).
+                </div>
+
+                <div class="doc-item">
+                    <strong>5. Travel Itinerary</strong>
+                    You must provide evidence of your travel plans, including confirmed flight bookings (onward and return) and proof of accommodation, such as hotel reservations.
+                </div>
+
+                <div class="doc-item">
+                    <strong>6. Travel Insurance</strong>
+                    Many regions, especially Schengen countries, require mandatory medical insurance. This policy must cover emergency care, hospitalization, and repatriation for the entire duration of your stay.
+                </div>
+            </div>
+
+            <h3 style="margin-top:50px;">Need Professional Assistance?</h3>
+            <p>Document requirements can change without notice. Our team at A.M. Travels stays updated with the latest embassy protocols to ensure your application is error-free. Contact us today for personalized visa consultancy.</p>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>A.M Travels</h4>
+                <p class="footer-link">
+                    Off no 2, #1/1, 5th Main, 3, Davis Rd,<br>
+                    St Thomas Town, Bangalore - 560084
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#" class="footer-link">Flight Status</a>
+                <a href="#" class="footer-link">Visa Requirements</a>
+                <a href="#" class="footer-link">KSRTC Schedule</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <a href="tel:+919591159111" class="footer-link">
+                    <i class="fa-solid fa-phone"></i> +91 95911 59111
+                </a>
+                <a href="mailto:amtravelbooking@gmail.com" class="footer-link">
+                    <i class="fa-solid fa-envelope"></i> amtravelbooking@gmail.com
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 A.M Travel & Documentation Services. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
