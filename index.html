@@ -1097,22 +1097,6 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
 });
 
 
-const result = await res.text();
-console.log("Sheet response:", result);
-
-    showToast("Inquiry submitted successfully!");
-form.reset();
-document.getElementById("serviceModal").style.display = "none";
-
-
-
-  } catch (err) {
-    console.error("Submission failed:", err);
-    alert("❌ Submission failed. Check console.");
-  }
-});
-
-
 // Mobile Hamburger Toggle
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.querySelector(".nav-links");
