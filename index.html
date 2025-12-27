@@ -1069,24 +1069,32 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
   e.preventDefault();
 
   const form = e.target;
+  const submitBtn = document.getElementById("submitBtn");
+  const btnText = submitBtn.querySelector(".btn-text");
+  const btnLoader = submitBtn.querySelector(".btn-loader");
 
-  const payload = {
-    source: "Service Modal",
-    service: document.getElementById("serviceTitle").textContent,
-    name: form.elements["name"].value,
-    phone: form.elements["phone"].value,
-    email: form.elements["email"].value,
-    details: form.elements["details"].value
-  };
+  // Prevent double submit
+  if (submitBtn.disabled) return;
+
+  // Basic validation
+  if (!form.name.value.trim() || !form.phone.value.trim()) {
+    showToast("Please fill all required fields");
+    return;
+  }
+
+  // Show loader
+  submitBtn.disabled = true;
+  btnText.style.display = "none";
+  btnLoader.style.display = "inline";
 
   try {
-    const formData = new FormData();
-    formData.append("source", payload.source);
-    formData.append("service", payload.service);
-    formData.append("name", payload.name);
-    formData.append("phone", payload.phone);
-    formData.append("email", payload.email);
-    formData.append("details", payload.details);
+    const formData = new FormData(form);
+
+    formData.append("source", "Service Modal");
+    formData.append(
+      "service",
+      document.getElementById("serviceTitle").textContent
+    );
 
     const res = await fetch(
       "https://script.google.com/macros/s/AKfycbzI2X2sG-56JniaXtpGzDW7cFkNzWHl3hs6Yi5ZQxoKrqjmTyGcaPJtIKORaoFKWrbCeA/exec",
@@ -1096,19 +1104,23 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
       }
     );
 
-    const result = await res.text();
-    console.log("Sheet response:", result);
+    await res.text();
 
-    // ✅ UI feedback
     showToast("Inquiry submitted successfully!");
     form.reset();
-    document.getElementById("serviceModal").style.display = "none";
+    modal.style.display = "none";
 
   } catch (err) {
-    console.error("Submission failed:", err);
-    showToast("Something went wrong. Please try again.");
+    console.error(err);
+    showToast("Submission failed. Please try again.");
+  } finally {
+    // Always reset button
+    submitBtn.disabled = false;
+    btnText.style.display = "inline";
+    btnLoader.style.display = "none";
   }
 });
+
 
 
 // Mobile Hamburger Toggle
