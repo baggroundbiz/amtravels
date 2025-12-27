@@ -1026,12 +1026,31 @@ document.querySelectorAll(".service-card").forEach(card => {
 document.querySelector(".close").onclick = () => modal.style.display = "none";
 window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-document.getElementById("inquiryForm").onsubmit = e => {
+document.getElementById("inquiryForm").onsubmit = async e => {
   e.preventDefault();
-  alert("Inquiry submitted! We’ll contact you shortly.");
+
+  const form = e.target;
+
+  const payload = {
+    source: "Service Modal",
+    service: document.getElementById("serviceTitle").textContent,
+    name: form.querySelector('input[type="text"]').value,
+    phone: form.querySelector('input[type="tel"]').value,
+    email: form.querySelector('input[type="email"]').value,
+    details: form.querySelector('textarea').value,
+    extra: {}
+  };
+
+  await fetch("https://script.google.com/macros/s/AKfycbxPk7e1ROKFkRLszjY1Ua-EPCqdiziU2trzH4Xx8SHtxSlA1dOO53YhGGGvn5ZDXfFnvg/exec", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+
   modal.style.display = "none";
-  e.target.reset();
+  form.reset();
+  alert("✅ Inquiry submitted! We’ll contact you shortly.");
 };
+
 
 
 // Mobile Hamburger Toggle
