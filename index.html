@@ -641,6 +641,16 @@ button {
     padding: 16px;
     font-size: 1rem;
   }
+  
+  button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-loader {
+  font-size: 0.95rem;
+}
+
 
   .form-group {
     margin-bottom: 16px;
@@ -974,7 +984,11 @@ button {
         <textarea name="details" rows="4"></textarea>
       </div>
 
-      <button type="submit">Submit Inquiry</button>
+      <button type="submit" id="submitBtn">
+  <span class="btn-text">Submit Inquiry</span>
+  <span class="btn-loader" style="display:none;">Submitting…</span>
+</button>
+
     </form>
   </div>
 </div>
