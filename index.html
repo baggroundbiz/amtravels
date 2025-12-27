@@ -105,6 +105,47 @@
         }
 
         .nav-links a:hover { color: var(--gold); }
+        
+        
+        /* ===== Desktop Nav Hover ===== */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== Hamburger (hidden on desktop) ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--primary);
+  transition: all 0.3s ease;
+}
+
 
         /* Hero Section */
         .hero {
@@ -255,11 +296,6 @@
             font-size: 0.8rem;
         }
 
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-        }
         
         .modal {
   display: none;
@@ -427,6 +463,37 @@ button {
    ========================= */
 
 @media (max-width: 768px) {
+  
+  /* ===== Mobile Nav Menu ===== */
+.hamburger {
+  display: flex;
+}
+
+.nav-links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  flex-direction: column;
+  display: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  padding: 16px 8%;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
 
   /* General text comfort */
   body {
@@ -447,6 +514,38 @@ button {
     font-size: 1.05rem;
     letter-spacing: 0.5px;
   }
+  
+  /* Mobile Nav Menu */
+.hamburger {
+  display: flex;
+}
+
+.nav-links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  flex-direction: column;
+  gap: 0;
+  display: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  padding: 16px 8%;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
 
   /* HERO */
   .hero {
@@ -590,6 +689,14 @@ button {
     <img src="https://i.ibb.co/SwTRXz9v/bg-0782a1cf-806e-49b3-8e47-d239297beb8c.png" alt="A.M Travels Logo">
     <span class="brand-text">A.M TRAVELS</span>
 </div>
+
+        <!-- Hamburger Menu -->
+           <div class="hamburger" id="hamburger">
+             <span></span>
+             <span></span>
+             <span></span>
+</div>
+
 
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -919,6 +1026,22 @@ document.getElementById("inquiryForm").onsubmit = e => {
   modal.style.display = "none";
   e.target.reset();
 };
+
+
+// Mobile Hamburger Toggle
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+
+// Auto-close menu on link click (mobile)
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+  });
+});
 
 
 </script>
