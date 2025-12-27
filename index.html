@@ -1239,9 +1239,12 @@ function showToast(message) {
 
 
 // Success box close button
-document.getElementById("successCloseBtn").onclick = () => {
-  document.getElementById("successBox").style.display = "none";
-};
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.id === "successCloseBtn") {
+    document.getElementById("successBox").style.display = "none";
+  }
+});
+
 
 
 </script>
