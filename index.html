@@ -1067,21 +1067,35 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
 
   try {
     const formData = new FormData();
+    formData.append("source", payload.source);
+    formData.append("service", payload.service);
+    formData.append("name", payload.name);
+    formData.append("phone", payload.phone);
+    formData.append("email", payload.email);
+    formData.append("details", payload.details);
 
-formData.append("source", payload.source);
-formData.append("service", payload.service);
-formData.append("name", payload.name);
-formData.append("phone", payload.phone);
-formData.append("email", payload.email);
-formData.append("details", payload.details);
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycbzI2X2sG-56JniaXtpGzDW7cFkNzWHl3hs6Yi5ZQxoKrqjmTyGcaPJtIKORaoFKWrbCeA/exec",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
 
-const res = await fetch(
-  "https://script.google.com/macros/s/AKfycbzI2X2sG-56JniaXtpGzDW7cFkNzWHl3hs6Yi5ZQxoKrqjmTyGcaPJtIKORaoFKWrbCeA/exec",
-  {
-    method: "POST",
-    body: formData
+    const result = await res.text();
+    console.log("Sheet response:", result);
+
+    // ✅ UI feedback
+    showToast("Inquiry submitted successfully!");
+    form.reset();
+    document.getElementById("serviceModal").style.display = "none";
+
+  } catch (err) {
+    console.error("Submission failed:", err);
+    showToast("Something went wrong. Please try again.");
   }
-);
+});
+
 
 const result = await res.text();
 console.log("Sheet response:", result);
@@ -1090,28 +1104,6 @@ console.log("Sheet response:", result);
 form.reset();
 document.getElementById("serviceModal").style.display = "none";
 
-const whatsappNumber = "9663916454"; // AM Travels number
-
-const whatsappMessage = `
-New Inquiry Received 📩
-
-Service: ${payload.service}
-Name: ${payload.name}
-Phone: ${payload.phone}
-Email: ${payload.email || "N/A"}
-Details: ${payload.details || "N/A"}
-`;
-
-const whatsappURL =
-  "https://wa.me/" +
-  whatsappNumber +
-  "?text=" +
-  encodeURIComponent(whatsappMessage);
-
-// Open WhatsApp after a short delay
-setTimeout(() => {
-  window.open(whatsappURL, "_blank");
-}, 1200);
 
 
   } catch (err) {
