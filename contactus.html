@@ -415,22 +415,22 @@ footer {
 
             <div class="form-group">
                 <label>Full Name *</label>
-                <input type="text" required>
+                <input type="text" name="name" required>
             </div>
 
             <div class="form-group">
                 <label>Phone Number *</label>
-                <input type="tel" pattern="[0-9]{10}" placeholder="9876543210" required>
+                <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="9876543210" required>
             </div>
 
             <div class="form-group">
                 <label>Email (optional)</label>
-                <input type="email">
+                <input type="email" name="email">
             </div>
 
             <div class="form-group">
                 <label>Type of Inquiry *</label>
-                <select id="inquiryType" required>
+                <select id="inquiryType" name="service" required>
                     <option value="">Select an option</option>
                     <option value="flight">Flight Bookings</option>
                     <option value="train">Train Tickets</option>
@@ -447,6 +447,7 @@ footer {
             <div id="flightFields" class="service-fields">
                 <label>From City</label>
                 <input type="text">
+                <textarea name="message" rows="4"></textarea>
                 <label>To City</label>
                 <input type="text">
                 <label>Travel Date</label>
@@ -633,11 +634,43 @@ inquiryType.addEventListener("change", () => {
   }
 });
 
-document.getElementById("contactForm").addEventListener("submit", e => {
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  alert("Inquiry submitted! We’ll contact you shortly.");
-  e.target.reset();
-  document.querySelectorAll(".service-fields").forEach(f => f.style.display = "none");
+
+  const form = e.target;
+
+  // Collect dynamic service field values
+  const extraData = {};
+  form.querySelectorAll(".service-fields input, .service-fields select").forEach(el => {
+    if (el.value) {
+      extraData[el.previousElementSibling?.innerText || el.name || "field"] = el.value;
+    }
+  });
+
+  const payload = {
+    source: "Contact Page",
+    service: form.elements["service"].value,
+    name: form.elements["name"].value,
+    phone: form.elements["phone"].value,
+    email: form.elements["email"].value,
+    details: form.elements["message"].value,
+    extra: extraData
+  };
+
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbxPk7e1ROKFkRLszjY1Ua-EPCqdiziU2trzH4Xx8SHtxSlA1dOO53YhGGGvn5ZDXfFnvg/exec", {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    alert("✅ Inquiry submitted successfully!");
+    form.reset();
+    document.querySelectorAll(".service-fields").forEach(f => f.style.display = "none");
+
+  } catch (err) {
+    alert("❌ Submission failed. Please try again.");
+    console.error(err);
+  }
 });
 
 
