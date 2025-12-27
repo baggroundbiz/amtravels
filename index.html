@@ -412,6 +412,30 @@ button {
   transition: opacity 0.3s ease;
 }
 
+/* ===== Toast Notification (ALL DEVICES) ===== */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: #0b3c5d;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+  z-index: 5000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
 @media (max-width: 768px) {
   .mobile-cta-bar {
@@ -690,29 +714,6 @@ button {
   opacity: 1;
 }
 
-/* ===== Toast Notification ===== */
-.toast {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  background: #0b3c5d;
-  color: #fff;
-  padding: 14px 22px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-  z-index: 5000;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 
     </style>
 </head>
@@ -900,96 +901,108 @@ button {
 
     <form id="inquiryForm">
 
-      <div class="form-group">
-        <label>Full Name *</label>
-        <input type="text" name="name" required>
-      </div>
+  <!-- BASIC DETAILS -->
+  <div class="form-group">
+    <label>Full Name *</label>
+    <input type="text" name="name" required>
+  </div>
 
-      <div class="form-group">
-        <label>Phone Number *</label>
-        <input type="tel" name="phone" pattern="[0-9]{10}" required>
-      </div>
+  <div class="form-group">
+    <label>Phone Number *</label>
+    <input type="tel" name="phone" pattern="[0-9]{10}" required>
+  </div>
 
-      <div class="form-group">
-        <label>Email (optional)</label>
-        <input type="email" name="email">
-      </div>
+  <div class="form-group">
+    <label>Email (optional)</label>
+    <input type="email" name="email">
+  </div>
 
-      <!-- FLIGHT -->
-      <div id="flightFields" class="service-fields">
-        <label>From City</label>
-        <input type="text">
-        <label>To City</label>
-        <input type="text">
-        <label>Travel Date</label>
-        <input type="date">
-      </div>
+  <!-- FLIGHT -->
+  <div id="flightFields" class="service-fields">
+    <label>From City</label>
+    <input type="text" name="flight_from_city">
 
-      <!-- TRAIN -->
-      <div id="trainFields" class="service-fields">
-        <label>Journey Date</label>
-        <input type="date">
-        <label>Quota</label>
-        <select>
-          <option>General</option>
-          <option>Tatkal</option>
-          <option>Premium Tatkal</option>
-        </select>
-      </div>
+    <label>To City</label>
+    <input type="text" name="flight_to_city">
 
-      <!-- BUS -->
-      <div id="busFields" class="service-fields">
-        <label>From City</label>
-        <input type="text">
-        <label>To City</label>
-        <input type="text">
-        <label>Travel Date</label>
-        <input type="date">
-      </div>
+    <label>Travel Date</label>
+    <input type="date" name="flight_travel_date">
+  </div>
 
- <!-- DL -->
-      <div id="dlFields" class="service-fields">
-        <label>Type</label>
-        <select>
-          <option>New</option>
-          <option>Renewal</option>
-        </select>
-      </div>
-      
-      <!-- PAN -->
-      <div id="panFields" class="service-fields">
-        <label>Type</label>
-        <select>
-          <option>New</option>
-          <option>Copy</option>
-        </select>
-      </div>
-      
-      <!-- PAN -->
-      <div id="stampFields" class="service-fields">
-        <label>Type</label>
-        <select>
-          <option>Rental/Lease Agreements</option>
-          <option>Affidavits & Declarations</option>
-          <option>Property Documents</option>
-          <option>Power of Attorney (POA)</option>
-          <option>Business Agreements</option>
-          <option>Others</option>
-        </select>
-      </div>      
+  <!-- TRAIN -->
+  <div id="trainFields" class="service-fields">
+    <label>Journey Date</label>
+    <input type="date" name="train_journey_date">
 
-      <!-- DEFAULT -->
-      <div class="form-group">
-        <label>Additional Details</label>
-        <textarea name="details" rows="4"></textarea>
-      </div>
+    <label>Quota</label>
+    <select name="train_quota">
+      <option value="">Select</option>
+      <option value="General">General</option>
+      <option value="Tatkal">Tatkal</option>
+      <option value="Premium Tatkal">Premium Tatkal</option>
+    </select>
+  </div>
 
-      <button type="submit" id="submitBtn">
-  <span class="btn-text">Submit Inquiry</span>
-  <span class="btn-loader" style="display:none;">Submitting…</span>
-</button>
+  <!-- BUS -->
+  <div id="busFields" class="service-fields">
+    <label>From City</label>
+    <input type="text" name="bus_from_city">
 
-    </form>
+    <label>To City</label>
+    <input type="text" name="bus_to_city">
+
+    <label>Travel Date</label>
+    <input type="date" name="bus_travel_date">
+  </div>
+
+  <!-- DRIVING LICENCE -->
+  <div id="dlFields" class="service-fields">
+    <label>Type</label>
+    <select name="dl_type">
+      <option value="">Select</option>
+      <option value="New">New</option>
+      <option value="Renewal">Renewal</option>
+    </select>
+  </div>
+
+  <!-- PAN -->
+  <div id="panFields" class="service-fields">
+    <label>Type</label>
+    <select name="pan_type">
+      <option value="">Select</option>
+      <option value="New">New</option>
+      <option value="Copy">Copy</option>
+    </select>
+  </div>
+
+  <!-- E-STAMP -->
+  <div id="stampFields" class="service-fields">
+    <label>Type</label>
+    <select name="stamp_type">
+      <option value="">Select</option>
+      <option value="Rental / Lease Agreement">Rental / Lease Agreement</option>
+      <option value="Affidavit / Declaration">Affidavit / Declaration</option>
+      <option value="Property Document">Property Document</option>
+      <option value="Power of Attorney">Power of Attorney (POA)</option>
+      <option value="Business Agreement">Business Agreement</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <!-- COMMON DETAILS -->
+  <div class="form-group">
+    <label>Additional Details</label>
+    <textarea name="details" rows="4"></textarea>
+  </div>
+
+  <!-- SUBMIT -->
+  <button type="submit" id="submitBtn">
+    <span class="btn-text">Submit Inquiry</span>
+    <span class="btn-loader" style="display:none;">Submitting…</span>
+  </button>
+
+</form>
+
   </div>
 </div>
 
