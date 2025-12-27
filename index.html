@@ -680,6 +680,29 @@ button {
   opacity: 1;
 }
 
+/* ===== Toast Notification ===== */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: #0b3c5d;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+  z-index: 5000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
     </style>
 </head>
@@ -1063,9 +1086,33 @@ const res = await fetch(
 const result = await res.text();
 console.log("Sheet response:", result);
 
-    alert("✅ Inquiry submitted successfully!");
-    form.reset();
-    document.getElementById("serviceModal").style.display = "none";
+    showToast("Inquiry submitted successfully!");
+form.reset();
+document.getElementById("serviceModal").style.display = "none";
+
+const whatsappNumber = "9663916454"; // AM Travels number
+
+const whatsappMessage = `
+New Inquiry Received 📩
+
+Service: ${payload.service}
+Name: ${payload.name}
+Phone: ${payload.phone}
+Email: ${payload.email || "N/A"}
+Details: ${payload.details || "N/A"}
+`;
+
+const whatsappURL =
+  "https://wa.me/" +
+  whatsappNumber +
+  "?text=" +
+  encodeURIComponent(whatsappMessage);
+
+// Open WhatsApp after a short delay
+setTimeout(() => {
+  window.open(whatsappURL, "_blank");
+}, 1200);
+
 
   } catch (err) {
     console.error("Submission failed:", err);
@@ -1097,6 +1144,17 @@ document.querySelectorAll('footer a').forEach(link => {
   });
 });
 
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+
 </script>
 
 <div class="mobile-cta-bar">
@@ -1108,6 +1166,7 @@ document.querySelectorAll('footer a').forEach(link => {
   </a>
 </div>
 
+<div id="toast" class="toast"></div>
 
 </body>
 </html>
