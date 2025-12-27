@@ -435,6 +435,74 @@ button {
   transform: translateY(0);
 }
 
+/* ===== Success Confirmation Box ===== */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 6000;
+}
+
+.success-box {
+  background: #fff;
+  padding: 36px 40px;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.3s ease;
+}
+
+.success-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #0b3c5d;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.success-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+  color: #0b3c5d;
+}
+
+.success-box p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 22px;
+}
+
+.success-box button {
+  background: #0b3c5d;
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
 
 
 @media (max-width: 768px) {
@@ -1110,7 +1178,7 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
     );
 
     const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbzI2X2sG-56JniaXtpGzDW7cFkNzWHl3hs6Yi5ZQxoKrqjmTyGcaPJtIKORaoFKWrbCeA/exec",
+      "https://script.google.com/macros/s/AKfycbyKZYQ0JJke4tewRBthjw5Bq8_d2Y4Howqn9gw1shK2eDgxP4GyNBaP1YSjynS3nT-U/exec",
       {
         method: "POST",
         body: formData
@@ -1119,7 +1187,7 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
 
     await res.text();
 
-    showToast("Inquiry submitted successfully!");
+    document.getElementById("successBox").style.display = "flex";
     form.reset();
     modal.style.display = "none";
 
@@ -1170,6 +1238,12 @@ function showToast(message) {
 }
 
 
+// Success box close button
+document.getElementById("successCloseBtn").onclick = () => {
+  document.getElementById("successBox").style.display = "none";
+};
+
+
 </script>
 
 <div class="mobile-cta-bar">
@@ -1182,6 +1256,16 @@ function showToast(message) {
 </div>
 
 <div id="toast" class="toast"></div>
+
+<div id="successBox" class="success-overlay">
+  <div class="success-box">
+    <div class="success-icon">✔</div>
+    <h3>Submitted Successfully</h3>
+    <p>We’ll reach out to you soon.</p>
+    <button id="successCloseBtn">Close</button>
+  </div>
+</div>
+
 
 </body>
 </html>
