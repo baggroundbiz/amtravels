@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | A.M Travels</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/SwTRXz9v/bg-0782a1cf-806e-49b3-8e47-d239297beb8c.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 🔹 SAME CSS (UNCHANGED) -->
+    <style>
+
+    /* =====================
+   VARIABLES
+   ===================== */
+:root {
+  --primary: #003366;
+  --gold: #003366;
+  --text: #333;
+  --light: #f9f9f9;
+  --transition: all 0.3s ease;
+}
+
+/* =====================
+   RESET
+   ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* =====================
+   NAV (SAME AS HOME)
+   ===================== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.brand img {
+  height: 34px;
+  width: auto;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.brand:hover img {
+  transform: translateY(-3px) rotate(-3deg) scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(0,51,102,0.35));
+}
+
+.brand-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* =====================
+   HAMBURGER
+   ===================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--primary);
+}
+
+/* =====================
+   CONTACT PAGE
+   ===================== */
+.contact-wrapper {
+  padding: 70px 8%;
+  background: #fff;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 40px;
+}
+
+.contact-box {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* =====================
+   FORM
+   ===================== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1.5px solid #ddd;
+  font-size: 0.95rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Dynamic Service Fields */
+.service-fields {
+  display: none;
+  margin-bottom: 18px;
+}
+
+.service-fields label {
+  margin-top: 10px;
+}
+
+/* Submit Button */
+button {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* =====================
+   FOOTER (SAME AS HOME)
+   ===================== */
+footer {
+  background: var(--primary);
+  color: #fff;
+  padding: 60px 8% 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+
+ /* ===== Footer Hover Effects (ADD BELOW) ===== */
+.footer-link {
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 1px;
+  background: rgba(255,255,255,0.6);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-section a.footer-link:hover i.fa-phone {
+  animation: phonePulse 0.8s ease-in-out infinite;
+}
+
+@keyframes phonePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Directions text animation */
+.footer-address {
+  display: inline-block;
+}
+
+.directions-text {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.75rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-address:hover .directions-text {
+  opacity: 0.8;
+  transform: translateX(0);
+}
+
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+  opacity: 0.85;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+}
+
+
+/* =====================
+   MOBILE
+   ===================== */
+@media (max-width: 768px) {
+
+  nav {
+    padding: 14px 6%;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .nav-links a {
+    padding: 16px 8%;
+    border-bottom: 1px solid #eee;
+  }
+
+  .contact-wrapper {
+    padding: 50px 6%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+ /* ===== Powered By (Reusable) ===== */
+.powered-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+  font-size: inherit;
+  color: inherit;
+}
+
+.powered-by a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.powered-logo {
+  height: 22px;
+  width: auto;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.powered-by a:hover .powered-logo {
+  opacity: 1;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAV (UNCHANGED) ================= -->
+<nav>
+  <a href="index.html" class="brand">
+    <img src="https://i.ibb.co/SwTRXz9v/bg-0782a1cf-806e-49b3-8e47-d239297beb8c.png" alt="A.M Travels Logo">
+    <span class="brand-text">A.M TRAVELS</span>
+  </a>
+
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact-wrapper">
+    <h2 class="section-title">Contact Us</h2>
+
+    <div class="contact-box">
+        <form id="contactForm">
+
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" pattern="[0-9]{10}" placeholder="9876543210" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email (optional)</label>
+                <input type="email">
+            </div>
+
+            <div class="form-group">
+                <label>Type of Inquiry *</label>
+                <select id="inquiryType" required>
+                    <option value="">Select an option</option>
+                    <option value="flight">Flight Bookings</option>
+                    <option value="train">Train Tickets</option>
+                    <option value="bus">Bus Services</option>
+                    <option value="passport">Passport & PCC</option>
+                    <option value="visa">Visa Processing</option>
+                    <option value="dl">Driving Licence</option>
+                    <option value="pan">PAN Card</option>
+                    <option value="stamp">E-Stamp Paper</option>
+                </select>
+            </div>
+
+            <!-- Flight -->
+            <div id="flightFields" class="service-fields">
+                <label>From City</label>
+                <input type="text">
+                <label>To City</label>
+                <input type="text">
+                <label>Travel Date</label>
+                <input type="date">
+            </div>
+
+            <!-- Train -->
+            <div id="trainFields" class="service-fields">
+                <label>Journey Date</label>
+                <input type="date">
+                <label>Quota</label>
+                <select>
+                    <option>General</option>
+                    <option>Tatkal</option>
+                    <option>Premium Tatkal</option>
+                </select>
+            </div>
+
+            <!-- Bus -->
+            <div id="busFields" class="service-fields">
+                <label>From City</label>
+                <input type="text">
+                <label>To City</label>
+                <input type="text">
+                <label>Travel Date</label>
+                <input type="date">
+            </div>
+
+            <!-- DL -->
+            <div id="dlFields" class="service-fields">
+                <label>Type</label>
+                <select>
+                    <option>New</option>
+                    <option>Renewal</option>
+                </select>
+            </div>
+
+            <!-- PAN -->
+            <div id="panFields" class="service-fields">
+                <label>Type</label>
+                <select>
+                    <option>New</option>
+                    <option>Renewal</option>
+                </select>
+            </div>
+
+            <!-- Stamp -->
+            <div id="stampFields" class="service-fields">
+                <label>Type</label>
+                <select>
+                    <option>Rental / Lease Agreements</option>
+                    <option>Affidavits & Declarations</option>
+                    <option>Property Documents</option>
+                    <option>Power of Attorney (POA)</option>
+                    <option>Business Agreements</option>
+                    <option>Others</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Additional Details</label>
+                <textarea rows="4"></textarea>
+            </div>
+
+            <button type="submit">Submit Inquiry</button>
+        </form>
+    </div>
+</section>
+
+<!-- ================= FOOTER (UNCHANGED) ================= -->
+<footer>
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>A.M Travels</h4>
+                <p>
+  <a 
+    href="https://maps.app.goo.gl/Q59mkX1sg8XpuBCv7"
+    target="_blank"
+    style="color:#fff; text-decoration:none;"
+    class="footer-link footer-address"
+    
+  >
+    Off no 2, #1/1, 5th Main, 3, Davis Rd,<br>
+    St Thomas Town, Bangalore - 560084
+    <span class="directions-text">Get Directions →</span>
+  </a>
+</p>
+
+            </div>
+            <div class="footer-section">
+    <h4>Quick Links</h4>
+
+    <p>
+        <a href="#" class="footer-link">
+            Flight Status
+        </a>
+    </p>
+
+    <p>
+        <a href="visa-requirements.html" class="footer-link">
+            Visa Requirements
+        </a>
+    </p>
+
+    <p>
+        <a href="#" class="footer-link">
+            KSRTC Schedule
+        </a>
+    </p>
+</div>
+
+            <div class="footer-section">
+    <h4>Contact Us</h4>
+
+    <p>
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:+919591159111" style="color:#fff; text-decoration:none;"class="footer-link">
+            +91 95911 59111
+        </a>
+    </p>
+
+    <p>
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:amtravelbooking@gmail.com" style="color:#fff; text-decoration:none;"class="footer-link">
+            amtravelbooking@gmail.com
+        </a>
+    </p>
+</div>
+
+        </div>
+        <div class="footer-bottom">
+            <span>
+  © 2025 · All Rights Reserved
+  <span class="powered-by">
+    Powered by
+<a href="https://baggroundbiz.github.io/digi/" target="_blank" aria-label="Bagground">
+          <svg class="powered-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <path d="M0 64.444V24.66h43.913c43.731 0 43.915 0.002 44.107 0.36 0.036 0.067 0.068 0.115 0.09 0.171 0.115 0.31 -0.182 0.77 -2.905 5.017 -0.153 0.239 -0.315 0.49 -0.482 0.752 -1.683 2.623 -4.046 6.309 -5.251 8.19l-5.076 7.92c-1.586 2.475 -4.565 7.132 -6.62 10.35s-3.973 6.093 -4.261 6.39l-0.522 0.54 -31.496 0.047zm5.758 -5.918 1.08 1.082 6.977 -0.07c6.109 -0.059 7.097 -0.11 7.965 -0.392 2.605 -0.853 4.327 -2.191 5.189 -4.028 0.448 -0.956 0.481 -1.19 0.473 -3.456 -0.007 -2.108 -0.063 -2.57 -0.425 -3.483 -0.502 -1.267 -2.351 -3.316 -3.431 -3.803 -0.4 -0.18 -0.727 -0.376 -0.725 -0.436 0 -0.059 0.292 -0.306 0.646 -0.547 0.887 -0.605 1.769 -1.726 2.356 -2.993 0.409 -0.887 0.504 -1.377 0.563 -2.903 0.101 -2.54 -0.324 -3.947 -1.613 -5.357 -1.105 -1.211 -1.957 -1.728 -3.755 -2.288 -1.316 -0.409 -1.528 -0.419 -8.28 -0.419H5.85l-0.047 14.548ZM42.12 59.933c3.28 0.365 8.681 -0.326 10.922 -1.395l0.598 -0.284v-13.982l-0.495 -0.22c-0.308 -0.139 -1.379 -0.221 -2.844 -0.221 -1.944 0 -2.432 0.054 -2.835 0.319l-0.486 0.32v6.462l-0.461 0.302c-1.289 0.844 -3.643 0.385 -5.168 -1.008 -1.757 -1.604 -2.524 -4.309 -2.111 -7.441 0.477 -3.622 2.486 -5.524 5.834 -5.524 1.377 0 3.314 0.477 3.978 0.979 0.889 0.671 1.856 0.049 2.837 -1.829 0.841 -1.611 1.211 -2.927 1.211 -4.3 0 -1.042 -0.04 -1.154 -0.533 -1.505 -0.702 -0.5 -2.225 -1.013 -4.005 -1.352 -1.897 -0.36 -6.035 -0.36 -7.772 -0.002 -5.213 1.076 -8.757 4.64 -10.206 10.258 -0.549 2.133 -0.598 6.673 -0.099 9.176 1.287 6.451 5.549 10.571 11.635 11.246m17.037 -1.258c1.305 0.392 2.551 0.106 3.654 -0.839 2.234 -1.912 1.838 -5.222 -0.785 -6.57 -0.562 -0.29 -0.965 -0.349 -1.998 -0.297 -1.606 0.081 -2.5 0.628 -3.233 1.975 -0.432 0.792 -0.486 1.062 -0.425 2.129 0.054 0.965 0.171 1.368 0.556 1.919 0.535 0.767 1.433 1.445 2.23 1.683M17.1 52.231c-0.347 0.167 -1.177 0.358 -1.845 0.427l-1.215 0.124V47.16h1.175c0.646 0 1.454 0.117 1.796 0.259 1.768 0.738 1.827 3.98 0.088 4.811m-0.011 -10.825c-0.398 0.203 -1.247 0.418 -1.886 0.479l-1.163 0.108v-5.679l1.339 0.085c2.043 0.131 2.979 0.985 2.981 2.716 0 1.141 -0.387 1.841 -1.271 2.291" fill="#ffffff" />
+          </svg>
+
+        </a>
+  </span>
+</span>
+
+        </div>
+</footer>
+
+<!-- ================= JS (UNCHANGED + ADDITIONS) ================= -->
+<script>
+/* MOBILE MENU */
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+
+// Close mobile nav when any footer link is clicked
+document.querySelectorAll('footer a').forEach(link => {
+  link.addEventListener('click', () => {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks?.classList.remove('active');
+  });
+});
+
+
+/* CONTACT FORM LOGIC */
+const inquiryType = document.getElementById("inquiryType");
+
+const serviceMap = {
+  flight: "flightFields",
+  train: "trainFields",
+  bus: "busFields",
+  dl: "dlFields",
+  pan: "panFields",
+  stamp: "stampFields"
+};
+
+inquiryType.addEventListener("change", () => {
+  document.querySelectorAll(".service-fields").forEach(f => f.style.display = "none");
+  if (serviceMap[inquiryType.value]) {
+    document.getElementById(serviceMap[inquiryType.value]).style.display = "block";
+  }
+});
+
+document.getElementById("contactForm").addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Inquiry submitted! We’ll contact you shortly.");
+  e.target.reset();
+  document.querySelectorAll(".service-fields").forEach(f => f.style.display = "none");
+});
+
+
+
+</script>
+
+</body>
+</html>
