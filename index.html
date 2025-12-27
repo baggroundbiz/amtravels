@@ -869,17 +869,17 @@ button {
 
       <div class="form-group">
         <label>Full Name *</label>
-        <input type="text" required>
+        <input type="text" name="name" required>
       </div>
 
       <div class="form-group">
         <label>Phone Number *</label>
-        <input type="tel" pattern="[0-9]{10}" placeholder="9876543210" required>
+        <input type="tel" name="phone" pattern="[0-9]{10}" required>
       </div>
 
       <div class="form-group">
         <label>Email (optional)</label>
-        <input type="email">
+        <input type="email" name="email">
       </div>
 
       <!-- FLIGHT -->
@@ -948,7 +948,7 @@ button {
       <!-- DEFAULT -->
       <div class="form-group">
         <label>Additional Details</label>
-        <textarea rows="4"></textarea>
+        <textarea name="details" rows="4"></textarea>
       </div>
 
       <button type="submit">Submit Inquiry</button>
@@ -1026,7 +1026,7 @@ document.querySelectorAll(".service-card").forEach(card => {
 document.querySelector(".close").onclick = () => modal.style.display = "none";
 window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-document.getElementById("inquiryForm").onsubmit = async e => {
+document.getElementById("inquiryForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const form = e.target;
@@ -1034,23 +1034,36 @@ document.getElementById("inquiryForm").onsubmit = async e => {
   const payload = {
     source: "Service Modal",
     service: document.getElementById("serviceTitle").textContent,
-    name: form.querySelector('input[type="text"]').value,
-    phone: form.querySelector('input[type="tel"]').value,
-    email: form.querySelector('input[type="email"]').value,
-    details: form.querySelector('textarea').value,
-    extra: {}
+    name: form.elements["name"].value,
+    phone: form.elements["phone"].value,
+    email: form.elements["email"].value,
+    details: form.elements["details"].value
   };
 
-  await fetch("https://script.google.com/macros/s/AKfycbxPk7e1ROKFkRLszjY1Ua-EPCqdiziU2trzH4Xx8SHtxSlA1dOO53YhGGGvn5ZDXfFnvg/exec", {
-    method: "POST",
-    body: JSON.stringify(payload)
-  });
+  try {
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycby8aAYnUs-ULIQ_P3x-ab6KT9aOgN6SHcLTfnlcYP-otkRMy8My-pPHjMaXAbkGBgaU2w/exec,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      }
+    );
 
-  modal.style.display = "none";
-  form.reset();
-  alert("✅ Inquiry submitted! We’ll contact you shortly.");
-};
+    const result = await res.json();
+    console.log("Sheet response:", result);
 
+    alert("✅ Inquiry submitted successfully!");
+    form.reset();
+    document.getElementById("serviceModal").style.display = "none";
+
+  } catch (err) {
+    console.error("Submission failed:", err);
+    alert("❌ Submission failed. Check console.");
+  }
+});
 
 
 // Mobile Hamburger Toggle
