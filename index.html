@@ -10,13 +10,12 @@
     
     <style>
         :root {
-            --primary: #003366; /* Deep Corporate Blue */
-            --gold: #003366;    /* Replaced gold with brand blue */
+            --primary: #003366; 
+            --gold: #003366;    
             --text: #333;
             --light: #f9f9f9;
             --transition: all 0.3s ease;
        }
-
 
         * {
             margin: 0;
@@ -44,49 +43,38 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        /* Brand lockup (logo + text) */
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        /* Brand lockup */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
 
-.brand img {
-    height: 34px;   /* THIS controls the logo size */
-    width: auto;
-    display: block;
-}
+        .brand img {
+            height: 34px; 
+            width: auto;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
 
-.brand {
-    cursor: pointer;
-}
+        .brand:hover img {
+            transform: translateY(-3px) rotate(-3deg) scale(1.05);
+            filter: drop-shadow(0 6px 12px rgba(0,51,102,0.35));
+        }
 
-.brand img {
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
+        .brand-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
+            transition: letter-spacing 0.4s ease;
+        }
 
-.brand:hover img {
-    transform: translateY(-3px) rotate(-3deg) scale(1.05);
-    filter: drop-shadow(0 6px 12px rgba(0,51,102,0.35));
-}
-
-.brand-text {
-    transition: letter-spacing 0.4s ease;
-}
-
-.brand:hover .brand-text {
-    letter-spacing: 2px;
-}
-
-
-.brand-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--primary);
-}
-
+        .brand:hover .brand-text {
+            letter-spacing: 2px;
+        }
 
         .nav-links {
             display: flex;
@@ -102,108 +90,98 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             transition: var(--transition);
+            position: relative;
         }
 
-        .nav-links a:hover { color: var(--gold); }
-        
-        
-        /* ===== Desktop Nav Hover ===== */
-.nav-links a {
-  position: relative;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.3s ease;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
 
-.nav-links a:hover {
-  transform: translateY(-2px);
-}
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
 
-/* ===== Hamburger (hidden on desktop) ===== */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.hamburger span {
-  width: 24px;
-  height: 2px;
-  background: var(--primary);
-  transition: all 0.3s ease;
-}
-
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
 
         /* Hero Section */
         .hero {
-    position: relative;
-    height: 80vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-}
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 25, 47, 0.7);
-    z-index: 1;
-}
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 25, 47, 0.7);
+            z-index: 1;
+        }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 20px;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
 
-.hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-}
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
 
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    font-weight: 300;
-}
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
 
-.hero-slides {
-    position: absolute;
-    inset: 0;
-}
+        .hero-slides {
+            position: absolute;
+            inset: 0;
+        }
 
-.hero-slides img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.2s ease;
-}
+        .hero-slides img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
 
-.hero-slides img.active {
-    opacity: 1;
-}
-
+        .hero-slides img.active {
+            opacity: 1;
+        }
 
         .btn {
             background: var(--gold);
@@ -270,6 +248,90 @@
             color: #666;
         }
 
+        /* =========================================
+           GLOBAL REVIEWS CAROUSEL (FIXED) 
+           ========================================= */
+        .reviews-section {
+            background: #fff;
+            padding: 70px 8%;
+            overflow: hidden; /* prevents scrollbar on body */
+        }
+
+        .reviews-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: -10px;
+        }
+
+        /* Wrapper that handles the scroll */
+        .reviews-carousel-wrapper {
+            margin-top: 40px;
+            width: 100%;
+            overflow-x: auto; /* enables swipe */
+            padding-bottom: 20px; /* space for scrollbar or shadow */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide scrollbar for clean look */
+        .reviews-carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* The flex container */
+        .reviews-carousel {
+            display: flex; 
+            flex-wrap: nowrap; /* Forces single row */
+            gap: 24px;
+        }
+
+        /* The Card */
+        .review-card {
+            min-width: 320px;
+            max-width: 320px;
+            flex-shrink: 0; /* CRITICAL: Prevents squishing */
+            background: #f9f9f9;
+            padding: 26px 24px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .review-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .review-rating {
+            color: #f5b301;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .review-date {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
         /* Footer */
         footer {
             background: var(--primary);
@@ -297,563 +359,243 @@
             font-size: 0.8rem;
         }
 
-        
-        .modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 2000;
-}
-
-.modal-content {
-  background: #fff;
-  width: 90%;
-  max-width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
-  margin: 5% auto;
-  padding: 30px;
-  border-radius: 12px;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.form-group { margin-bottom: 18px; }
-
-input, textarea, select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1.5px solid #ddd;
-}
-
-button {
-  background: var(--primary);
-  color: #fff;
-  padding: 14px;
-  border: none;
-  border-radius: 6px;
-  width: 100%;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.service-fields { display: none; }
-
         .footer-link {
-  color: #fff;
-  text-decoration: none;
-  position: relative;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* subtle underline reveal */
-.footer-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 0%;
-  height: 1px;
-  background: rgba(255,255,255,0.6);
-  transition: width 0.3s ease;
-}
-
-.footer-link:hover {
-  opacity: 0.85;
-  transform: translateX(3px);
-}
-
-.footer-link:hover::after {
-  width: 100%;
-}
-
-
-.footer-address {
-  display: inline-block;
-}
-
-.directions-text {
-  display: inline-block;
-  margin-left: 6px;
-  font-size: 0.75rem;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.footer-address:hover .directions-text {
-  opacity: 0.8;
-  transform: translateX(0);
-}
-
-/* Mobile Sticky CTA */
-.mobile-cta-bar {
-  display: none;
-}
-
-/* ===== Powered By Logo (Desktop default) ===== */
-.powered-logo {
-  height: 30px;        /* desktop size */
-  width: auto;
-  vertical-align: middle;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
-}
-
-/* ===== Toast Notification (ALL DEVICES) ===== */
-.toast {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  background: #0b3c5d;
-  color: #fff;
-  padding: 14px 22px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-  z-index: 5000;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== Success Confirmation Box ===== */
-.success-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 6000;
-}
-
-.success-box {
-  background: #fff;
-  padding: 36px 40px;
-  border-radius: 14px;
-  text-align: center;
-  max-width: 420px;
-  width: 90%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-  animation: scaleIn 0.3s ease;
-}
-
-.success-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  background: #0b3c5d;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-}
-
-.success-box h3 {
-  font-size: 1.4rem;
-  margin-bottom: 6px;
-  color: #0b3c5d;
-}
-
-.success-box p {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 22px;
-}
-
-.success-box button {
-  background: #0b3c5d;
-  color: #fff;
-  border: none;
-  padding: 12px 26px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-
-
-
-@media (max-width: 768px) {
-  .mobile-cta-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    z-index: 3000;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
-  }
-
-  .mobile-cta-bar a {
-    flex: 1;
-    text-align: center;
-    padding: 14px 0;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-
-  .cta-call {
-    background: var(--primary);
-  }
-
-  .cta-whatsapp {
-    background: #25D366;
-  }
-
-  body {
-    padding-bottom: 56px; /* prevents overlap */
-  }
-}
-
-/* Phone icon pulse */
-.footer-section a.footer-link:hover i.fa-phone {
-  animation: phonePulse 0.8s ease-in-out infinite;
-}
-
-@keyframes phonePulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-
-/* =========================
-   MOBILE OPTIMIZATION ONLY
-   (Does NOT affect desktop)
-   ========================= */
-
-@media (max-width: 768px) {
-  
-  /* ===== Mobile Nav Menu ===== */
-.hamburger {
-  display: flex;
-}
-
-.nav-links {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  flex-direction: column;
-  display: none;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.nav-links.active {
-  display: flex;
-}
-
-.nav-links li {
-  margin: 0;
-}
-
-.nav-links a {
-  padding: 16px 8%;
-  width: 100%;
-  border-bottom: 1px solid #eee;
-}
-
-
-  /* General text comfort */
-  body {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  /* NAV */
-  nav {
-    padding: 14px 6%;
-  }
-
-  .brand img {
-    height: 30px;
-  }
-
-  .brand-text {
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-  }
-  
-  /* Mobile Nav Menu */
-.hamburger {
-  display: flex;
-}
-
-.nav-links {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  flex-direction: column;
-  gap: 0;
-  display: none;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.nav-links.active {
-  display: flex;
-}
-
-.nav-links li {
-  margin: 0;
-}
-
-.nav-links a {
-  padding: 16px 8%;
-  width: 100%;
-  border-bottom: 1px solid #eee;
-}
-
-
-  /* HERO */
-  .hero {
-    height: 70vh;
-    padding: 0 12px;
-  }
-
-  .hero h1 {
-    font-size: 2.1rem;
-    line-height: 1.25;
-    margin-bottom: 12px;
-  }
-
-  .hero p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-
-  .btn {
-    padding: 14px 28px;
-    font-size: 0.95rem;
-  }
-
-  /* SECTION TITLE */
-  .section-title {
-    font-size: 2rem;
-    padding: 45px 20px 15px;
-    line-height: 1.3;
-  }
-
-  /* SERVICES GRID */
-  .services-container {
-    padding: 30px 6%;
-    gap: 18px;
-  }
-
-  .service-card {
-    padding: 28px 22px;
-    border-radius: 12px;
-  }
-
-  .service-card i {
-    font-size: 2.2rem;
-    margin-bottom: 14px;
-  }
-
-  .service-card h3 {
-    font-size: 1.05rem;
-    margin-bottom: 10px;
-  }
-
-  .service-card p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 45px 6% 20px;
-  }
-
-  .footer-section h4 {
-    font-size: 1.1rem;
-    margin-bottom: 14px;
-  }
-
-  .footer-section p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .footer-content {
-    gap: 28px;
-  }
-
-  /* MODAL */
-  .modal-content {
-    padding: 24px 20px;
-    margin: 8% auto;
-    max-height: 85vh;
-  }
-
-  input,
-  textarea,
-  select {
-    font-size: 0.95rem;
-    padding: 14px;
-  }
-
-  button {
-    padding: 16px;
-    font-size: 1rem;
-  }
-  
-  button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.btn-loader {
-  font-size: 0.95rem;
-}
-
-
-  .form-group {
-    margin-bottom: 16px;
-  }
-
-  /* MOBILE CTA BAR */
-  .mobile-cta-bar a {
-    font-size: 1rem;
-    padding: 16px 0;
-  }
-  
-  /* ===== Powered By (Reusable) ===== */
-.powered-by {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 6px;
-  font-size: inherit;
-  color: inherit;
-}
-
-.powered-by a {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-}
-
-.powered-logo {
-  height: 22px;
-  width: auto;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
-}
-
-.powered-by a:hover .powered-logo {
-  opacity: 1;
-}
-
-    /* ===== Reviews Section ===== */
-.reviews-section {
-  background: #fff;
-  padding: 60px 8%;
-}
-
-.reviews-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 30px;
-}
-
-.review-card {
-  background: #f9f9f9;
-  padding: 26px 22px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease;
-}
-
-.review-card:hover {
-  transform: translateY(-6px);
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.review-name {
-  font-weight: 600;
-  color: var(--primary);
-}
-
-.review-rating {
-  color: #f5b301;
-  font-size: 0.9rem;
-}
-
-.review-text {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.review-date {
-  font-size: 0.8rem;
-  color: #888;
-}
-
-
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 1px;
+            background: rgba(255,255,255,0.6);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 0.85;
+            transform: translateX(3px);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1.5px solid #ddd;
+        }
+
+        button {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .service-fields { display: none; }
+        .mobile-cta-bar { display: none; }
+
+        /* Toast & Success */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #0b3c5d;
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            z-index: 5000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 6000;
+        }
+
+        .success-box {
+            background: #fff;
+            padding: 36px 40px;
+            border-radius: 14px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            animation: scaleIn 0.3s ease;
+        }
+
+        .success-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: #0b3c5d;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ===== MOBILE MEDIA QUERIES ===== */
+        @media (max-width: 768px) {
+            .mobile-cta-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                z-index: 3000;
+                box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+            }
+
+            .mobile-cta-bar a {
+                flex: 1;
+                text-align: center;
+                padding: 14px 0;
+                font-weight: 600;
+                color: #fff;
+                text-decoration: none;
+                font-size: 0.95rem;
+            }
+
+            .cta-call { background: var(--primary); }
+            .cta-whatsapp { background: #25D366; }
+
+            body { padding-bottom: 56px; }
+
+            .hamburger { display: flex; }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                display: none;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 0; }
+            .nav-links a {
+                padding: 16px 8%;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+
+            .hero { height: 70vh; padding: 0 12px; }
+            .hero h1 { font-size: 2.1rem; }
+            
+            /* Mobile review card sizing */
+            .review-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+        }
+
+        /* Powered By Logo */
+        .powered-by {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 6px;
+            font-size: inherit;
+            color: inherit;
+        }
+        .powered-logo {
+            height: 22px;
+            width: auto;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="brand">
-    <img src="https://i.ibb.co/SwTRXz9v/bg-0782a1cf-806e-49b3-8e47-d239297beb8c.png" alt="A.M Travels Logo">
-    <span class="brand-text">A.M TRAVELS</span>
-</div>
+            <img src="https://i.ibb.co/SwTRXz9v/bg-0782a1cf-806e-49b3-8e47-d239297beb8c.png" alt="A.M Travels Logo">
+            <span class="brand-text">A.M TRAVELS</span>
+        </div>
 
-        <!-- Hamburger Menu -->
-           <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger">
              <span></span>
              <span></span>
              <span></span>
-</div>
-
+        </div>
 
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -864,27 +606,23 @@ button {
     </nav>
 
     <section class="hero" id="home">
+        <div class="hero-slides">
+            <img src="https://i.ibb.co/ZpCJLVtt/image.png" class="active">
+            <img src="https://i.ibb.co/9kMzcHxT/pexels-raj-dhananchezhiyan-1177342-2275932.jpg">
+            <img src="https://i.ibb.co/5xf25wWk/image.png">
+            <img src="https://i.ibb.co/wnHdbDp/image.png">
+            <img src="https://i.ibb.co/6c6ccVGC/image.png">
+            <img src="https://i.ibb.co/xKchwrwH/image.png">
+            <img src="https://i.ibb.co/spPjnftL/image.png">
+            <img src="https://i.ibb.co/WWt3CqBk/image.png">
+        </div>
 
-    <div class="hero-slides">
-        <img src="https://i.ibb.co/ZpCJLVtt/image.png" class="active">
-        <img src="https://i.ibb.co/9kMzcHxT/pexels-raj-dhananchezhiyan-1177342-2275932.jpg">
-        <img src="https://i.ibb.co/5xf25wWk/image.png">
-        <img src="https://i.ibb.co/wnHdbDp/image.png">
-        <img src="https://i.ibb.co/6c6ccVGC/image.png">
-        <img src="https://i.ibb.co/xKchwrwH/image.png">
-        <img src="https://i.ibb.co/spPjnftL/image.png">
-        <img src="https://i.ibb.co/WWt3CqBk/image.png">
-        
-    </div>
-
-    <div class="hero-content">
-        <h1 id="hero-title">Premium Travel & Documentation</h1>
-        <p>Your Trusted Partner in Bangalore for Global Mobility & Essential Services</p>
-        <a href="#services" class="btn">Explore Services</a>
-    </div>
-
-</section>
-
+        <div class="hero-content">
+            <h1 id="hero-title">Premium Travel & Documentation</h1>
+            <p>Your Trusted Partner in Bangalore for Global Mobility & Essential Services</p>
+            <a href="#services" class="btn">Explore Services</a>
+        </div>
+    </section>
 
     <h2 class="section-title" id="services">Our Expert Services</h2>
 
@@ -894,43 +632,36 @@ button {
             <h3>Flight Bookings</h3>
             <p>Seamless Domestic and International air travel with premium lounge assistance.</p>
         </div>
-
         <div class="service-card" data-service="train">
             <i class="fa-solid fa-train"></i>
             <h3>Train Tickets</h3>
             <p>Specialists in Tatkal and Premium Tatkal bookings for urgent travel needs.</p>
         </div>
-
         <div class="service-card" data-service="bus">
             <i class="fa-solid fa-bus"></i>
             <h3>Bus Services</h3>
             <p>Luxury multi-axle coaches and prompt KSRTC bookings across Karnataka.</p>
         </div>
-
         <div class="service-card" data-service="passport">
             <i class="fa-solid fa-passport"></i>
             <h3>Passport & PCC</h3>
             <p>New applications, renewals, and PCC appointments for all global destinations.</p>
         </div>
-
         <div class="service-card" data-service="visa">
             <i class="fa-solid fa-globe"></i>
             <h3>Visa Processing</h3>
             <p>End-to-end documentation support for Tourist, Business, and Study Visas.</p>
         </div>
-
         <div class="service-card" data-service="dl">
             <i class="fa-solid fa-id-card"></i>
             <h3>Driving Licence</h3>
             <p>Hassle-free New DL applications and timely renewals at your local RTO.</p>
         </div>
-
         <div class="service-card" data-service="pan">
             <i class="fa-solid fa-address-card"></i>
             <h3>PAN Card</h3>
             <p>Quick assistance for New PAN cards and correction of existing details.</p>
         </div>
-
         <div class="service-card" data-service="estamp">
             <i class="fa-solid fa-file-contract"></i>
             <h3>E-Stamp Paper</h3>
@@ -939,229 +670,165 @@ button {
     </div>
 
     <section class="reviews-section" id="reviews">
-  <h2 class="section-title">What Our Customers Say</h2>
-
-  <p style="text-align:center; color:#666; font-size:0.9rem; margin-top:-10px;">
-    ★★★★★ Google Reviews from verified customers
-  </p>
-
-        
-  <div class="reviews-container" id="reviewsContainer">
-    <p style="text-align:center;">Loading reviews…</p>
-  </div>
-</section>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="reviews-subtitle">
+        ★★★★★ Google Reviews from verified customers
+      </p>
+      
+      <div class="reviews-carousel-wrapper">
+        <div class="reviews-carousel" id="reviewsContainer">
+          <p style="text-align:center; width:100%;">Loading reviews…</p>
+        </div>
+      </div>
+    </section>
 
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>A.M Travels</h4>
                 <p>
-  <a 
-    href="https://maps.app.goo.gl/Q59mkX1sg8XpuBCv7"
-    target="_blank"
-    style="color:#fff; text-decoration:none;"
-    class="footer-link footer-address"
-    
-  >
-    Off no 2, #1/1, 5th Main, 3, Davis Rd,<br>
-    St Thomas Town, Bangalore - 560084
-    <span class="directions-text">Get Directions →</span>
-  </a>
-</p>
-
+                  <a href="https://maps.app.goo.gl/Q59mkX1sg8XpuBCv7" target="_blank" style="color:#fff; text-decoration:none;" class="footer-link footer-address">
+                    Off no 2, #1/1, 5th Main, 3, Davis Rd,<br>
+                    St Thomas Town, Bangalore - 560084
+                    <span class="directions-text">Get Directions →</span>
+                  </a>
+                </p>
             </div>
             <div class="footer-section">
-    <h4>Quick Links</h4>
-
-    <p>
-        <a href="#" class="footer-link">
-            Flight Status
-        </a>
-    </p>
-
-    <p>
-        <a href="visa-requirements.html" class="footer-link">
-            Visa Requirements
-        </a>
-    </p>
-
-    <p>
-        <a href="#" class="footer-link">
-            KSRTC Schedule
-        </a>
-    </p>
-</div>
-
+                <h4>Quick Links</h4>
+                <p><a href="#" class="footer-link">Flight Status</a></p>
+                <p><a href="visa-requirements.html" class="footer-link">Visa Requirements</a></p>
+                <p><a href="#" class="footer-link">KSRTC Schedule</a></p>
+            </div>
             <div class="footer-section">
-    <h4>Contact Us</h4>
-
-    <p>
-        <i class="fa-solid fa-phone"></i>
-        <a href="tel:+919591159111" style="color:#fff; text-decoration:none;"class="footer-link">
-            +91 95911 59111
-        </a>
-    </p>
-
-    <p>
-        <i class="fa-solid fa-envelope"></i>
-        <a href="mailto:amtravelbooking@gmail.com" style="color:#fff; text-decoration:none;"class="footer-link">
-            amtravelbooking@gmail.com
-        </a>
-    </p>
-</div>
-
+                <h4>Contact Us</h4>
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+919591159111" style="color:#fff; text-decoration:none;" class="footer-link">+91 95911 59111</a>
+                </p>
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:amtravelbooking@gmail.com" style="color:#fff; text-decoration:none;" class="footer-link">amtravelbooking@gmail.com</a>
+                </p>
+            </div>
         </div>
         <div class="footer-bottom">
             <span>
-  © 2025 · All Rights Reserved
-  <span class="powered-by">
-    Powered by
-<a href="https://baggroundbiz.github.io/site/" target="_blank" aria-label="Bagground">
-          <svg class="powered-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-            <path d="M0 64.444V24.66h43.913c43.731 0 43.915 0.002 44.107 0.36 0.036 0.067 0.068 0.115 0.09 0.171 0.115 0.31 -0.182 0.77 -2.905 5.017 -0.153 0.239 -0.315 0.49 -0.482 0.752 -1.683 2.623 -4.046 6.309 -5.251 8.19l-5.076 7.92c-1.586 2.475 -4.565 7.132 -6.62 10.35s-3.973 6.093 -4.261 6.39l-0.522 0.54 -31.496 0.047zm5.758 -5.918 1.08 1.082 6.977 -0.07c6.109 -0.059 7.097 -0.11 7.965 -0.392 2.605 -0.853 4.327 -2.191 5.189 -4.028 0.448 -0.956 0.481 -1.19 0.473 -3.456 -0.007 -2.108 -0.063 -2.57 -0.425 -3.483 -0.502 -1.267 -2.351 -3.316 -3.431 -3.803 -0.4 -0.18 -0.727 -0.376 -0.725 -0.436 0 -0.059 0.292 -0.306 0.646 -0.547 0.887 -0.605 1.769 -1.726 2.356 -2.993 0.409 -0.887 0.504 -1.377 0.563 -2.903 0.101 -2.54 -0.324 -3.947 -1.613 -5.357 -1.105 -1.211 -1.957 -1.728 -3.755 -2.288 -1.316 -0.409 -1.528 -0.419 -8.28 -0.419H5.85l-0.047 14.548ZM42.12 59.933c3.28 0.365 8.681 -0.326 10.922 -1.395l0.598 -0.284v-13.982l-0.495 -0.22c-0.308 -0.139 -1.379 -0.221 -2.844 -0.221 -1.944 0 -2.432 0.054 -2.835 0.319l-0.486 0.32v6.462l-0.461 0.302c-1.289 0.844 -3.643 0.385 -5.168 -1.008 -1.757 -1.604 -2.524 -4.309 -2.111 -7.441 0.477 -3.622 2.486 -5.524 5.834 -5.524 1.377 0 3.314 0.477 3.978 0.979 0.889 0.671 1.856 0.049 2.837 -1.829 0.841 -1.611 1.211 -2.927 1.211 -4.3 0 -1.042 -0.04 -1.154 -0.533 -1.505 -0.702 -0.5 -2.225 -1.013 -4.005 -1.352 -1.897 -0.36 -6.035 -0.36 -7.772 -0.002 -5.213 1.076 -8.757 4.64 -10.206 10.258 -0.549 2.133 -0.598 6.673 -0.099 9.176 1.287 6.451 5.549 10.571 11.635 11.246m17.037 -1.258c1.305 0.392 2.551 0.106 3.654 -0.839 2.234 -1.912 1.838 -5.222 -0.785 -6.57 -0.562 -0.29 -0.965 -0.349 -1.998 -0.297 -1.606 0.081 -2.5 0.628 -3.233 1.975 -0.432 0.792 -0.486 1.062 -0.425 2.129 0.054 0.965 0.171 1.368 0.556 1.919 0.535 0.767 1.433 1.445 2.23 1.683M17.1 52.231c-0.347 0.167 -1.177 0.358 -1.845 0.427l-1.215 0.124V47.16h1.175c0.646 0 1.454 0.117 1.796 0.259 1.768 0.738 1.827 3.98 0.088 4.811m-0.011 -10.825c-0.398 0.203 -1.247 0.418 -1.886 0.479l-1.163 0.108v-5.679l1.339 0.085c2.043 0.131 2.979 0.985 2.981 2.716 0 1.141 -0.387 1.841 -1.271 2.291" fill="#ffffff" />
-          </svg>
-
-        </a>
-  </span>
-</span>
-
+              © 2025 · All Rights Reserved
+              <span class="powered-by">
+                Powered by
+                <a href="https://baggroundbiz.github.io/site/" target="_blank" aria-label="Bagground">
+                  <svg class="powered-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <path d="M0 64.444V24.66h43.913c43.731 0 43.915 0.002 44.107 0.36 0.036 0.067 0.068 0.115 0.09 0.171 0.115 0.31 -0.182 0.77 -2.905 5.017 -0.153 0.239 -0.315 0.49 -0.482 0.752 -1.683 2.623 -4.046 6.309 -5.251 8.19l-5.076 7.92c-1.586 2.475 -4.565 7.132 -6.62 10.35s-3.973 6.093 -4.261 6.39l-0.522 0.54 -31.496 0.047zm5.758 -5.918 1.08 1.082 6.977 -0.07c6.109 -0.059 7.097 -0.11 7.965 -0.392 2.605 -0.853 4.327 -2.191 5.189 -4.028 0.448 -0.956 0.481 -1.19 0.473 -3.456 -0.007 -2.108 -0.063 -2.57 -0.425 -3.483 -0.502 -1.267 -2.351 -3.316 -3.431 -3.803 -0.4 -0.18 -0.727 -0.376 -0.725 -0.436 0 -0.059 0.292 -0.306 0.646 -0.547 0.887 -0.605 1.769 -1.726 2.356 -2.993 0.409 -0.887 0.504 -1.377 0.563 -2.903 0.101 -2.54 -0.324 -3.947 -1.613 -5.357 -1.105 -1.211 -1.957 -1.728 -3.755 -2.288 -1.316 -0.409 -1.528 -0.419 -8.28 -0.419H5.85l-0.047 14.548ZM42.12 59.933c3.28 0.365 8.681 -0.326 10.922 -1.395l0.598 -0.284v-13.982l-0.495 -0.22c-0.308 -0.139 -1.379 -0.221 -2.844 -0.221 -1.944 0 -2.432 0.054 -2.835 0.319l-0.486 0.32v6.462l-0.461 0.302c-1.289 0.844 -3.643 0.385 -5.168 -1.008 -1.757 -1.604 -2.524 -4.309 -2.111 -7.441 0.477 -3.622 2.486 -5.524 5.834 -5.524 1.377 0 3.314 0.477 3.978 0.979 0.889 0.671 1.856 0.049 2.837 -1.829 0.841 -1.611 1.211 -2.927 1.211 -4.3 0 -1.042 -0.04 -1.154 -0.533 -1.505 -0.702 -0.5 -2.225 -1.013 -4.005 -1.352 -1.897 -0.36 -6.035 -0.36 -7.772 -0.002 -5.213 1.076 -8.757 4.64 -10.206 10.258 -0.549 2.133 -0.598 6.673 -0.099 9.176 1.287 6.451 5.549 10.571 11.635 11.246m17.037 -1.258c1.305 0.392 2.551 0.106 3.654 -0.839 2.234 -1.912 1.838 -5.222 -0.785 -6.57 -0.562 -0.29 -0.965 -0.349 -1.998 -0.297 -1.606 0.081 -2.5 0.628 -3.233 1.975 -0.432 0.792 -0.486 1.062 -0.425 2.129 0.054 0.965 0.171 1.368 0.556 1.919 0.535 0.767 1.433 1.445 2.23 1.683M17.1 52.231c-0.347 0.167 -1.177 0.358 -1.845 0.427l-1.215 0.124V47.16h1.175c0.646 0 1.454 0.117 1.796 0.259 1.768 0.738 1.827 3.98 0.088 4.811m-0.011 -10.825c-0.398 0.203 -1.247 0.418 -1.886 0.479l-1.163 0.108v-5.679l1.339 0.085c2.043 0.131 2.979 0.985 2.981 2.716 0 1.141 -0.387 1.841 -1.271 2.291" fill="#ffffff" />
+                  </svg>
+                </a>
+              </span>
+            </span>
         </div>
     </footer>
 
-<!-- Service Inquiry Modal -->
-<div id="serviceModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-
-    <h2 id="serviceTitle">Service Inquiry</h2>
-
-    <form id="inquiryForm">
-
-  <!-- BASIC DETAILS -->
-  <div class="form-group">
-    <label>Full Name *</label>
-    <input type="text" name="name" required>
-  </div>
-
-  <div class="form-group">
-    <label>Phone Number *</label>
-    <input type="tel" name="phone" pattern="[0-9]{10}" required>
-  </div>
-
-  <div class="form-group">
-    <label>Email (optional)</label>
-    <input type="email" name="email">
-  </div>
-
-  <!-- FLIGHT -->
-  <div id="flightFields" class="service-fields">
-    <label>From City</label>
-    <input type="text" name="flight_from_city">
-
-    <label>To City</label>
-    <input type="text" name="flight_to_city">
-
-    <label>Travel Date</label>
-    <input type="date" name="flight_travel_date">
-  </div>
-
-  <!-- TRAIN -->
-  <div id="trainFields" class="service-fields">
-    <label>Journey Date</label>
-    <input type="date" name="train_journey_date">
-
-    <label>Quota</label>
-    <select name="train_quota">
-      <option value="">Select</option>
-      <option value="General">General</option>
-      <option value="Tatkal">Tatkal</option>
-      <option value="Premium Tatkal">Premium Tatkal</option>
-    </select>
-  </div>
-
-  <!-- BUS -->
-  <div id="busFields" class="service-fields">
-    <label>From City</label>
-    <input type="text" name="bus_from_city">
-
-    <label>To City</label>
-    <input type="text" name="bus_to_city">
-
-    <label>Travel Date</label>
-    <input type="date" name="bus_travel_date">
-  </div>
-
-  <!-- DRIVING LICENCE -->
-  <div id="dlFields" class="service-fields">
-    <label>Type</label>
-    <select name="dl_type">
-      <option value="">Select</option>
-      <option value="New">New</option>
-      <option value="Renewal">Renewal</option>
-    </select>
-  </div>
-
-  <!-- PAN -->
-  <div id="panFields" class="service-fields">
-    <label>Type</label>
-    <select name="pan_type">
-      <option value="">Select</option>
-      <option value="New">New</option>
-      <option value="Copy">Copy</option>
-    </select>
-  </div>
-
-  <!-- E-STAMP -->
-  <div id="stampFields" class="service-fields">
-    <label>Type</label>
-    <select name="stamp_type">
-      <option value="">Select</option>
-      <option value="Rental / Lease Agreement">Rental / Lease Agreement</option>
-      <option value="Affidavit / Declaration">Affidavit / Declaration</option>
-      <option value="Property Document">Property Document</option>
-      <option value="Power of Attorney">Power of Attorney (POA)</option>
-      <option value="Business Agreement">Business Agreement</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
-
-  <!-- COMMON DETAILS -->
-  <div class="form-group">
-    <label>Additional Details</label>
-    <textarea name="details" rows="4"></textarea>
-  </div>
-
-  <!-- SUBMIT -->
-  <button type="submit" id="submitBtn">
-    <span class="btn-text">Submit Inquiry</span>
-    <span class="btn-loader" style="display:none;">Submitting…</span>
-  </button>
-
-</form>
-
-  </div>
-</div>
-
+    <div id="serviceModal" class="modal">
+      <div class="modal-content">
+        <span class="close">×</span>
+        <h2 id="serviceTitle">Service Inquiry</h2>
+        <form id="inquiryForm">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" name="phone" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group">
+            <label>Email (optional)</label>
+            <input type="email" name="email">
+          </div>
+          <div id="flightFields" class="service-fields">
+            <label>From City</label>
+            <input type="text" name="flight_from_city">
+            <label>To City</label>
+            <input type="text" name="flight_to_city">
+            <label>Travel Date</label>
+            <input type="date" name="flight_travel_date">
+          </div>
+          <div id="trainFields" class="service-fields">
+            <label>Journey Date</label>
+            <input type="date" name="train_journey_date">
+            <label>Quota</label>
+            <select name="train_quota">
+              <option value="">Select</option>
+              <option value="General">General</option>
+              <option value="Tatkal">Tatkal</option>
+              <option value="Premium Tatkal">Premium Tatkal</option>
+            </select>
+          </div>
+          <div id="busFields" class="service-fields">
+            <label>From City</label>
+            <input type="text" name="bus_from_city">
+            <label>To City</label>
+            <input type="text" name="bus_to_city">
+            <label>Travel Date</label>
+            <input type="date" name="bus_travel_date">
+          </div>
+          <div id="dlFields" class="service-fields">
+            <label>Type</label>
+            <select name="dl_type">
+              <option value="">Select</option>
+              <option value="New">New</option>
+              <option value="Renewal">Renewal</option>
+            </select>
+          </div>
+          <div id="panFields" class="service-fields">
+            <label>Type</label>
+            <select name="pan_type">
+              <option value="">Select</option>
+              <option value="New">New</option>
+              <option value="Copy">Copy</option>
+            </select>
+          </div>
+          <div id="stampFields" class="service-fields">
+            <label>Type</label>
+            <select name="stamp_type">
+              <option value="">Select</option>
+              <option value="Rental / Lease Agreement">Rental / Lease Agreement</option>
+              <option value="Affidavit / Declaration">Affidavit / Declaration</option>
+              <option value="Property Document">Property Document</option>
+              <option value="Power of Attorney">Power of Attorney (POA)</option>
+              <option value="Business Agreement">Business Agreement</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Additional Details</label>
+            <textarea name="details" rows="4"></textarea>
+          </div>
+          <button type="submit" id="submitBtn">
+            <span class="btn-text">Submit Inquiry</span>
+            <span class="btn-loader" style="display:none;">Submitting…</span>
+          </button>
+        </form>
+      </div>
+    </div>
 
     <script>
-      
-      console.log("JS loaded");
-        // Smooth scroll ONLY for same-page hash links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
+        console.log("JS loaded");
 
-    if (targetId.length > 1) {
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        targetEl.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  });
-});
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.length > 1) {
+              const targetEl = document.querySelector(targetId);
+              if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          });
+        });
 
-        // Add scroll effect to navbar
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
@@ -1171,198 +838,161 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
         });
         
-    const slides = document.querySelectorAll('.hero-slides img');
-    let currentSlide = 0;
+        // Hero Slider
+        const slides = document.querySelectorAll('.hero-slides img');
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
 
-    setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 5000);
+        // Modal Logic
+        const modal = document.getElementById("serviceModal");
+        const title = document.getElementById("serviceTitle");
+        const services = {
+          flight: { title: "Flight Bookings", fields: "flightFields" },
+          train: { title: "Train Tickets", fields: "trainFields" },
+          bus: { title: "Bus Services", fields: "busFields"},
+          passport: { title: "Passport & PCC" },
+          visa: { title: "Visa Processing" },
+          dl: { title: "Driving Licence", fields: "dlFields" },
+          pan: { title: "PAN Card", fields: "panFields" },
+          estamp: { title: "E-Stamp Paper", fields: "stampFields" }
+        };
 
+        document.querySelectorAll(".service-card").forEach(card => {
+          card.addEventListener("click", () => {
+            const service = services[card.dataset.service];
+            if (!service) return;
+            title.textContent = service.title;
+            document.querySelectorAll(".service-fields").forEach(f => f.style.display = "none");
+            if (service.fields) {
+              document.getElementById(service.fields).style.display = "block";
+            }
+            modal.style.display = "block";
+          });
+        });
 
-const modal = document.getElementById("serviceModal");
-const title = document.getElementById("serviceTitle");
+        document.querySelector(".close").onclick = () => modal.style.display = "none";
+        window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-const services = {
-  flight: { title: "Flight Bookings", fields: "flightFields" },
-  train: { title: "Train Tickets", fields: "trainFields" },
-  bus: { title: "Bus Services", fields: "busFields"},
-  passport: { title: "Passport & PCC" },
-  visa: { title: "Visa Processing" },
-  dl: { title: "Driving Licence", fields: "dlFields" },
-  pan: { title: "PAN Card", fields: "panFields" },
-  estamp: { title: "E-Stamp Paper", fields: "stampFields" }
-};
+        // Form Submission
+        document.getElementById("inquiryForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const form = e.target;
+          const submitBtn = document.getElementById("submitBtn");
+          const btnText = submitBtn.querySelector(".btn-text");
+          const btnLoader = submitBtn.querySelector(".btn-loader");
 
-document.querySelectorAll(".service-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const service = services[card.dataset.service];
-    if (!service) return;
+          if (submitBtn.disabled) return;
+          if (!form.name.value.trim() || !form.phone.value.trim()) {
+            showToast("Please fill all required fields");
+            return;
+          }
 
-    title.textContent = service.title;
+          submitBtn.disabled = true;
+          btnText.style.display = "none";
+          btnLoader.style.display = "inline";
 
-    document.querySelectorAll(".service-fields").forEach(f => f.style.display = "none");
-    if (service.fields) {
-      document.getElementById(service.fields).style.display = "block";
-    }
+          try {
+            const formData = new FormData(form);
+            formData.append("source", "Service Modal");
+            formData.append("service", document.getElementById("serviceTitle").textContent);
 
-    modal.style.display = "block";
-  });
-});
+            const res = await fetch("https://script.google.com/macros/s/AKfycbyKZYQ0JJke4tewRBthjw5Bq8_d2Y4Howqn9gw1shK2eDgxP4GyNBaP1YSjynS3nT-U/exec", {
+                method: "POST",
+                body: formData
+            });
 
-document.querySelector(".close").onclick = () => modal.style.display = "none";
-window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+            await res.text();
+            document.getElementById("successBox").style.display = "flex";
+            form.reset();
+            modal.style.display = "none";
+          } catch (err) {
+            console.error(err);
+            showToast("Submission failed. Please try again.");
+          } finally {
+            submitBtn.disabled = false;
+            btnText.style.display = "inline";
+            btnLoader.style.display = "none";
+          }
+        });
 
-document.getElementById("inquiryForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+        // Mobile Menu
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+        document.querySelectorAll(".nav-links a").forEach(link => {
+          link.addEventListener("click", () => navLinks.classList.remove("active"));
+        });
+        document.querySelectorAll('footer a').forEach(link => {
+          link.addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks?.classList.remove('active');
+          });
+        });
 
-  const form = e.target;
-  const submitBtn = document.getElementById("submitBtn");
-  const btnText = submitBtn.querySelector(".btn-text");
-  const btnLoader = submitBtn.querySelector(".btn-loader");
+        // Toast & Success
+        function showToast(message) {
+          const toast = document.getElementById("toast");
+          toast.textContent = message;
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 3000);
+        }
 
-  // Prevent double submit
-  if (submitBtn.disabled) return;
+        document.addEventListener("click", function (e) {
+          if (e.target && e.target.id === "successCloseBtn") {
+            document.getElementById("successBox").style.display = "none";
+          }
+        });
 
-  // Basic validation
-  if (!form.name.value.trim() || !form.phone.value.trim()) {
-    showToast("Please fill all required fields");
-    return;
-  }
+        // ===== Load Google Reviews =====
+        fetch("https://script.google.com/macros/s/AKfycbwgg6pmSU3Re-x9xfAJU_LXiMqoUHAcEBkt4LUNou0qGZNR4kSrKPjSX05lksH7IcTq/exec")
+          .then(res => res.json())
+          .then(reviews => {
+            const container = document.getElementById("reviewsContainer");
+            container.innerHTML = "";
+            reviews.slice(0, 10).forEach(r => {
+              const rating = Number(r.Rating) || 5;
+              const stars = "★".repeat(rating);
+              container.innerHTML += `
+                <div class="review-card">
+                  <div class="review-header">
+                    <span class="review-name">${r.Name}</span>
+                    <span class="review-rating">${stars}</span>
+                  </div>
+                  <p class="review-text">${r.Review || "Excellent service!"}</p>
+                  <div class="review-date">${new Date(r.Date).toDateString()}</div>
+                </div>
+              `;
+            });
+          })
+          .catch(() => {
+            document.getElementById("reviewsContainer").innerHTML = "<p style='text-align:center;'>Unable to load reviews.</p>";
+          });
+    </script>
 
-  // Show loader
-  submitBtn.disabled = true;
-  btnText.style.display = "none";
-  btnLoader.style.display = "inline";
+    <div class="mobile-cta-bar">
+      <a href="tel:+919591159111" class="cta-call">
+        <i class="fa-solid fa-phone"></i> Call
+      </a>
+      <a href="https://wa.me/919591159111" target="_blank" class="cta-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
 
-  try {
-    const formData = new FormData(form);
+    <div id="toast" class="toast"></div>
 
-    formData.append("source", "Service Modal");
-    formData.append(
-      "service",
-      document.getElementById("serviceTitle").textContent
-    );
-
-    const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbyKZYQ0JJke4tewRBthjw5Bq8_d2Y4Howqn9gw1shK2eDgxP4GyNBaP1YSjynS3nT-U/exec",
-      {
-        method: "POST",
-        body: formData
-      }
-    );
-
-    await res.text();
-
-    document.getElementById("successBox").style.display = "flex";
-    form.reset();
-    modal.style.display = "none";
-
-  } catch (err) {
-    console.error(err);
-    showToast("Submission failed. Please try again.");
-  } finally {
-    // Always reset button
-    submitBtn.disabled = false;
-    btnText.style.display = "inline";
-    btnLoader.style.display = "none";
-  }
-});
-
-
-
-// Mobile Hamburger Toggle
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.querySelector(".nav-links");
-
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-// Auto-close menu on link click (mobile)
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
-  });
-});
-
-// Close mobile nav when any footer link is clicked
-document.querySelectorAll('footer a').forEach(link => {
-  link.addEventListener('click', () => {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks?.classList.remove('active');
-  });
-});
-
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
-}
-
-
-// Success box close button
-document.addEventListener("click", function (e) {
-  if (e.target && e.target.id === "successCloseBtn") {
-    document.getElementById("successBox").style.display = "none";
-  }
-});
-
-// ===== Load Google Reviews from Sheet =====
-fetch("https://script.google.com/macros/s/AKfycbwgg6pmSU3Re-x9xfAJU_LXiMqoUHAcEBkt4LUNou0qGZNR4kSrKPjSX05lksH7IcTq/exec")
-  .then(res => res.json())
-  .then(reviews => {
-    const container = document.getElementById("reviewsContainer");
-    container.innerHTML = "";
-
-    reviews.slice(0, 6).forEach(r => {
-      const stars = "★".repeat(r.Rating || 5);
-
-      container.innerHTML += `
-        <div class="review-card">
-          <div class="review-header">
-            <span class="review-name">${r.Name}</span>
-            <span class="review-rating">${stars}</span>
-          </div>
-          <p class="review-text">${r.Review}</p>
-          <div class="review-date">${r.Date}</div>
-        </div>
-      `;
-    });
-  })
-  .catch(() => {
-    document.getElementById("reviewsContainer").innerHTML =
-      "<p style='text-align:center;'>Unable to load reviews.</p>";
-  });
-
-
-</script>
-
-<div class="mobile-cta-bar">
-  <a href="tel:+919591159111" class="cta-call">
-    <i class="fa-solid fa-phone"></i> Call
-  </a>
-  <a href="https://wa.me/919591159111" target="_blank" class="cta-whatsapp">
-    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-  </a>
-</div>
-
-<div id="toast" class="toast"></div>
-
-<div id="successBox" class="success-overlay">
-  <div class="success-box">
-    <div class="success-icon">✔</div>
-    <h3>Submitted Successfully</h3>
-    <p>We’ll reach out to you soon.</p>
-    <button id="successCloseBtn">Close</button>
-  </div>
-</div>
-
-
+    <div id="successBox" class="success-overlay">
+      <div class="success-box">
+        <div class="success-icon">✔</div>
+        <h3>Submitted Successfully</h3>
+        <p>We’ll reach out to you soon.</p>
+        <button id="successCloseBtn">Close</button>
+      </div>
+    </div>
 </body>
 </html>
