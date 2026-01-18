@@ -782,6 +782,60 @@ button {
   opacity: 1;
 }
 
+    /* ===== Reviews Section ===== */
+.reviews-section {
+  background: #fff;
+  padding: 60px 8%;
+}
+
+.reviews-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.review-card {
+  background: #f9f9f9;
+  padding: 26px 22px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-6px);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.review-name {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.review-rating {
+  color: #f5b301;
+  font-size: 0.9rem;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.review-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
 
     </style>
 </head>
@@ -804,6 +858,7 @@ button {
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>  
             <li><a href="contactus.html">Contact</a></li>
         </ul>
     </nav>
@@ -882,6 +937,19 @@ button {
             <p>Rental agreements, lease deeds, and affidavits on legal E-stamp paper.</p>
         </div>
     </div>
+
+    <section class="reviews-section" id="reviews">
+  <h2 class="section-title">What Our Customers Say</h2>
+
+  <p style="text-align:center; color:#666; font-size:0.9rem; margin-top:-10px;">
+    ★★★★★ Google Reviews from verified customers
+  </p>
+
+        
+  <div class="reviews-container" id="reviewsContainer">
+    <p style="text-align:center;">Loading reviews…</p>
+  </div>
+</section>
 
     <footer id="contact">
         <div class="footer-content">
@@ -1245,6 +1313,32 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// ===== Load Google Reviews from Sheet =====
+fetch("PASTE_YOUR_APPS_SCRIPT_URL_HERE")
+  .then(res => res.json())
+  .then(reviews => {
+    const container = document.getElementById("reviewsContainer");
+    container.innerHTML = "";
+
+    reviews.slice(0, 6).forEach(r => {
+      const stars = "★".repeat(r.Rating || 5);
+
+      container.innerHTML += `
+        <div class="review-card">
+          <div class="review-header">
+            <span class="review-name">${r.Name}</span>
+            <span class="review-rating">${stars}</span>
+          </div>
+          <p class="review-text">${r.Review}</p>
+          <div class="review-date">${r.Date}</div>
+        </div>
+      `;
+    });
+  })
+  .catch(() => {
+    document.getElementById("reviewsContainer").innerHTML =
+      "<p style='text-align:center;'>Unable to load reviews.</p>";
+  });
 
 
 </script>
